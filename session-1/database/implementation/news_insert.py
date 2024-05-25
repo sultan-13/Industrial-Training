@@ -80,7 +80,7 @@ def insert_reporter(connection, name, email):
     data = (name, email)
     execute_query(connection, query, data)
 
-def insert_publisher(connection, name, email):
+def insert_publisher(connection, name, email, phone_number, head_office_address, website, facebook, twitter, linkedin, instagram):
     """
     Inserts a new publisher into the publishers table.
 
@@ -98,10 +98,10 @@ def insert_publisher(connection, name, email):
     None
     """
     query = """
-    INSERT INTO publishers (name, email)
-    VALUES (%s, %s)
+    INSERT INTO publishers (name, email, phone_number, head_office_address, website, facebook, twitter, linkedin, instagram)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
-    data = (name, email)
+    data = (name, email, phone_number, head_office_address, website, facebook, twitter, linkedin, instagram)
     execute_query(connection, query, data)
 
 def insert_news(connection, category_id, reporter_id, publisher_id, datetime, title, body, link):
@@ -197,8 +197,8 @@ if __name__ == "__main__":
         insert_category(conn, "Sports", "All news related to sports")
         insert_reporter(conn, "John Sam", "john@example.com")
 
-        insert_publisher(conn, "Prothom Alo", "p_alo@gmail.com")
-        insert_publisher(conn, "Daily Star", "d_star@gmail.com")
+        insert_publisher(conn, "Prothom Alo", "p_alo@gmail.com", 1234567890, "Dhaka, Bangladesh", "prothomalo.com", "facebook.com/prothomalo", "twitter.com/prothomalo", "linkedin.com/prothomalo", "instagram.com/prothomalo")
+        insert_publisher(conn, "Daily Star", "d_star@gmail.com", 1234567891, "Dhaka, Bangladesh", "dailystar.com.bd", "facebook.com/dailystar", "twitter.com/dailystar", "linkedin.com/dailystar", "instagram.com/dailystar")
 
         insert_news(conn, 1, 1, 1, "2022-01-01 00:00:00", "Test News Article 1", "This is the body of the first news article.", "https://example.com/news-article-1")
         insert_news(conn, 2, 2, 2, "2022-01-02 00:00:00", "Test News Article 2", "This is the body of the second news article.", "https://example.com/news-article-2")
